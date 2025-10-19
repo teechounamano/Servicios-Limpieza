@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeEchoUnaMano (TUM) - Servicios de Limpieza Profesional</title>
+    <meta name="description" content="Servicios de limpieza profesional en Panamá. Mantenimiento, limpieza profunda, rescate y más.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #10b981;
+            --primary-dark: #059669;
+            --secondary: #3b82f6;
+            --background: #f8fafc;
+            --card-bg: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border: #e2e8f0;
+            --success: #22c55e;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #f0fdf4 0%, #dbeafe 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding-bottom: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header */
+        header {
+            background: var(--card-bg);
+            box-shadow: var(--shadow);
+            padding: 1.5rem 0;
+            margin-bottom: 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.25rem;
+        }
+
+        .logo-text h1 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .logo-text p {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .contact-badge {
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-badge:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Info Banner */
+        .info-banner {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .info-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .info-text h3 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .info-text p {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Service Card */
+        .service-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 2px solid transparent;
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .service-card.selected {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%);
+        }
+
+        .service-card.selected::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .card-title h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            color: var(--text-primary);
+        }
+
+        .card-title p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .card-description {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .card-features {
+            list-style: none;
+            margin-bottom: 1rem;
+        }
+
+        .card-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .card-features li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem;
+            background: var(--background);
+            border-radius: 12px;
+            margin-top: 1rem;
+        }
+
+        .checkbox-container input[type="checkbox"] {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            accent-color: var(--primary);
+        }
+
+        .checkbox-container label {
+            font-weight: 600;
+            color: var(--text-primary);
+            cursor: pointer;
+            flex: 1;
+        }
+
+        /* Submit Button */
+        .submit-container {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border: none;
+            padding: 1rem 3rem;
+            border-radius: 12px;
+            font-size: 1.125rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: var(--shadow);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            animation: fadeIn 0.3s;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: var(--shadow-lg);
+            animation: slideUp 0.3s;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            margin: 0 auto 1rem;
+        }
+
+        .modal-header h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-header p {
+            color: var(--text-secondary);
+        }
+
+        .modal-body {
+            background: var(--background);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-body h4 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+        }
+
+        .modal-body ul {
+            list-style: none;
+        }
+
+        .modal-body li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .modal-body li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 0.875rem;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .modal-btn-cancel {
+            background: var(--background);
+            color: var(--text-primary);
+        }
+
+        .modal-btn-cancel:hover {
+            background: var(--border);
+        }
+
+        .modal-btn-confirm {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+        }
+
+        .modal-btn-confirm:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .logo-text h1 {
+                font-size: 1rem;
+            }
+
+            .contact-badge {
+                font-size: 0.75rem;
+                padding: 0.375rem 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">TUM</div>
+                    <div class="logo-text">
+                        <h1>TeEchoUnaMano</h1>
+                        <p>Servicios de Limpieza Profesional</p>
+                    </div>
+                </div>
+                <a href="https://wa.me/50769696969" class="contact-badge">
+                    <span>📞</span>
+                    <span>Contactar</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h2>Selecciona el Servicio que Necesitas</h2>
+            <p>Ofrecemos soluciones de limpieza profesional adaptadas a tus necesidades específicas</p>
+        </section>
+
+        <!-- Info Banner -->
+        <div class="info-banner">
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-icon">✓</div>
+                    <div class="info-text">
+                        <h3>Personal Capacitado</h3>
+                        <p>Equipo profesional certificado</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">🛡️</div>
+                    <div class="info-text">
+                        <h3>Garantía de Calidad</h3>
+                        <p>100% satisfacción garantizada</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">⚡</div>
+                    <div class="info-text">
+                        <h3>Respuesta Rápida</h3>
+                        <p>Atención en 24 horas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services Grid -->
+        <div class="services-grid">
+            <!-- Limpieza de Mantenimiento -->
+            <div class="service-card" data-service="mantenimiento">
+                <span class="popular-badge">Más Popular</span>
+                <div class="card-header">
+                    <div class="card-icon">🏠</div>
+                    <div class="card-title">
+                        <h3>Limpieza de Mantenimiento</h3>
+                        <p>Ideal para el día a día</p>
+                    </div>
+                </div>
+                <p class="card-description">
+                    Servicio regular para mantener tu espacio impecable. Perfecto para hogares y oficinas que necesitan limpieza constante.
+                </p>
+                <ul class="card-features">
+                    <li>Limpieza de superficies y pisos</li>
+                    <li>Desinfección de áreas comunes</li>
+                    <li>Organización básica</li>
+                    <li>Vaciado de basureros</li>
+                </ul>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="mantenimiento" name="service" value="Limpieza de Mantenimiento">
+                    <label for="mantenimiento">Seleccionar este servicio</label>
+                </div>
+            </div>
+
+            <!-- Limpieza a Fondo -->
+            <div class="service-card" data-service="fondo">
+                <div class="card-header">
+                    <div class="card-icon">✨</div>
+                    <div class="card-title">
+                        <h3>Limpieza a Fondo</h3>
+                        <p>Limpieza profunda completa</p>
+                    </div>
+                </div>
+                <p class="card-description">
+                    Limpieza exhaustiva de cada rincón. Ideal para mudanzas, eventos especiales o limpieza trimestral.
+                </p>
+                <ul class="card-features">
+                    <li>Limpieza detallada de todas las áreas</li>
+                    <li>Desinfección profunda</li>
+                    <li>Limpieza de electrodomésticos</li>
+                    <li>Áreas de difícil acceso</li>
+                </ul>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="fondo" name="service" value="Limpieza a Fondo">
+                    <label for="fondo">Seleccionar este servicio</label>
+                </div>
+            </div>
+
+            <!-- Limpieza de Rescate -->
+            <div class="service-card" data-service="rescate">
+                <div class="card-header">
+                    <div class="card-icon">🚨</div>
+                    <div class="card-title">
+                        <h3>Limpieza de Rescate</h3>
+                        <p>Para espacios descuidados</p>
+                    </div>
+                </div>
+                <p class="card-description">
+                    Recuperación de espacios en estado crítico. Transformamos áreas muy descuidadas en espacios habitables.
+                </p>
+                <ul class="card-features">
+                    <li>Evaluación inicial del espacio</li>
+                    <li>Remoción de desechos acumulados</li>
+                    <li>Desinfección intensiva</li>
+                    <li>Restauración completa</li>
+                </ul>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="rescate" name="service" value="Limpieza de Rescate">
+                    <label for="rescate">Seleccionar este servicio</label>
+                </div>
+            </div>
+
+            <!-- Limpieza por Tarea -->
+            <div class="service-card" data-service="tarea">
+                <div class="card-header">
+                    <div class="card-icon">📋</div>
+                    <div class="card-title">
+                        <h3>Limpieza por Tarea</h3>
+                        <p>Servicios específicos</p>
+                    </div>
+                </div>
+                <p class="card-description">
+                    Servicios personalizados según tus necesidades específicas. Tú decides qué áreas o tareas necesitas.
+                </p>
+                <ul class="card-features">
+                    <li>Limpieza de áreas específicas</li>
+                    <li>Tareas personalizadas</li>
+                    <li>Flexibilidad total</li>
+                    <li>Presupuesto ajustado</li>
+                </ul>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="tarea" name="service" value="Limpieza por Tarea">
+                    <label for="tarea">Seleccionar este servicio</label>
+                </div>
+            </div>
+
+            <!-- Limpieza de Cristales -->
+            <div class="service-card" data-service="cristales">
+                <div class="card-header">
+                    <div class="card-icon">🪟</div>
+                    <div class="card-title">
+                        <h3>Limpieza de Cristales</h3>
+                        <p>Ventanas impecables</p>
+                    </div>
+                </div>
+                <p class="card-description">
+                    Servicio especializado en limpieza de ventanas, espejos y superficies de vidrio. Resultados sin rayas.
+                </p>
+                <ul class="card-features">
+                    <li>Limpieza interior y exterior</li>
+                    <li>Productos especializados</li>
+                    <li>Sin rayas ni marcas</li>
+                    <li>Marcos y rieles incluidos</li>
+                </ul>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="cristales" name="service" value="Limpieza de Cristales">
+                    <label for="cristales">Seleccionar este servicio</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="submit-container">
+            <button class="submit-btn" id="submitBtn" disabled>
+                <span>📱</span>
+                <span>Solicitar Presupuesto por WhatsApp</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="confirmModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-icon">✓</div>
+                <h3>Confirmar Solicitud</h3>
+                <p>Estás a punto de solicitar los siguientes servicios:</p>
+            </div>
+            <div class="modal-body">
+                <h4>Servicios seleccionados:</h4>
+                <ul id="selectedServicesList"></ul>
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-cancel" id="cancelBtn">Cancelar</button>
+                <button class="modal-btn modal-btn-confirm" id="confirmBtn">Enviar a WhatsApp</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Estado de la aplicación
+        const state = {
+            selectedServices: new Set()
+        };
+
+        // Elementos del DOM
+        const serviceCards = document.querySelectorAll('.service-card');
+        const checkboxes = document.querySelectorAll('input[name="service"]');
+        const submitBtn = document.getElementById('submitBtn');
+        const modal = document.getElementById('confirmModal');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const confirmBtn = document.getElementById('confirmBtn');
+        const selectedServicesList = document.getElementById('selectedServicesList');
+
+        // Función para actualizar el estado de selección
+        function updateSelection() {
+            state.selectedServices.clear();
+            
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    state.selectedServices.add(checkbox.value);
+                    checkbox.closest('.service-card').classList.add('selected');
+                } else {
+                    checkbox.closest('.service-card').classList.remove('selected');
+                }
+            });
+
+            // Habilitar/deshabilitar botón de envío
+            submitBtn.disabled = state.selectedServices.size === 0;
+        }
+
+        // Event listeners para checkboxes
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', updateSelection);
+        });
+
+        // Event listeners para cards (hacer clic en la card selecciona el checkbox)
+        serviceCards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                // No hacer nada si se hizo clic en el checkbox o su label
+                if (e.target.type === 'checkbox' || e.target.tagName === 'LABEL') {
+                    return;
+                }
+                
+                const checkbox = card.querySelector('input[type="checkbox"]');
+                checkbox.checked = !checkbox.checked;
+                updateSelection();
+            });
+        });
+
+        // Mostrar modal al hacer clic en el botón de envío
+        submitBtn.addEventListener('click', () => {
+            // Actualizar lista de servicios en el modal
+            selectedServicesList.innerHTML = '';
+            state.selectedServices.forEach(service => {
+                const li = document.createElement('li');
+                li.textContent = service;
+                selectedServicesList.appendChild(li);
+            });
+
+            modal.classList.add('active');
+        });
+
+        // Cerrar modal
+        cancelBtn.addEventListener('click', () => {
+            modal.classList.remove('active');
+        });
+
+        // Cerrar modal al hacer clic fuera
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+
+        // Confirmar y enviar a WhatsApp
+        confirmBtn.addEventListener('click', () => {
+            const phoneNumber = '50769696969';
+            const services = Array.from(state.selectedServices).join('\n• ');
+            
+            const message = `¡Hola! Me gustaría solicitar un presupuesto para los siguientes servicios de limpieza:\n\n• ${services}\n\nPor favor, envíenme más información sobre disponibilidad y precios.\n\n¡Gracias!`;
+            
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            
+            window.open(whatsappUrl, '_blank');
+            modal.classList.remove('active');
+        });
+
+        // Inicializar
+        updateSelection();
+    </script>
+</body>
+</html>
