@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TeEchoUnaMano (TUM) - Servicios de Limpieza Profesional</title>
-    <meta name="description" content="Servicios de limpieza profesional en Panamá. Mantenimiento, limpieza profunda, rescate y más.">
+    <meta name="description" content="Servicios de limpieza profesional. Mantenimiento, limpieza profunda, rescate y más. Solicita tu presupuesto por WhatsApp.">
+    <link rel="icon" href="https://i.ibb.co/fYNYd9p/ICONO-WEB.png">
     <style>
         * {
             margin: 0;
@@ -13,43 +14,53 @@
         }
 
         :root {
+            /* Colores actualizados para coincidir exactamente con el diseño Next.js */
             --primary: #10b981;
-            --primary-dark: #059669;
-            --secondary: #3b82f6;
-            --background: #f8fafc;
+            --primary-hover: #059669;
+            --accent: #0ea5e9;
+            --accent-hover: #0284c7;
+            
+            --background: #ffffff;
+            --surface: #f8fafc;
             --card-bg: #ffffff;
-            --text-primary: #1e293b;
-            --text-secondary: #64748b;
+            
+            --foreground: #0f172a;
+            --foreground-muted: #475569;
+            --foreground-subtle: #64748b;
+            
             --border: #e2e8f0;
-            --success: #22c55e;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --border-hover: #cbd5e1;
+            
+            --success: #10b981;
+            
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #f0fdf4 0%, #dbeafe 100%);
-            color: var(--text-primary);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--surface);
+            color: var(--foreground);
             line-height: 1.6;
             min-height: 100vh;
-            padding-bottom: 2rem;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
             padding: 0 1rem;
         }
 
         /* Header */
         header {
-            background: var(--card-bg);
-            box-shadow: var(--shadow);
-            padding: 1.5rem 0;
-            margin-bottom: 2rem;
+            background: var(--background);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
             position: sticky;
             top: 0;
             z-index: 100;
+            backdrop-filter: blur(8px);
         }
 
         .header-content {
@@ -65,122 +76,96 @@
             gap: 0.75rem;
         }
 
-        .logo-icon {
+        .logo-img {
             width: 40px;
             height: 40px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 1.25rem;
+            border-radius: 0.5rem;
+            object-fit: cover;
         }
 
         .logo-text h1 {
-            font-size: 1.25rem;
+            font-size: 1.125rem;
             font-weight: 700;
-            color: var(--text-primary);
+            color: var(--foreground);
+            line-height: 1.2;
         }
 
         .logo-text p {
             font-size: 0.75rem;
-            color: var(--text-secondary);
+            color: var(--foreground-subtle);
         }
 
-        .contact-badge {
-            background: var(--primary);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 9999px;
-            font-size: 0.875rem;
-            font-weight: 600;
+        .header-link {
+            color: var(--foreground-muted);
             text-decoration: none;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.2s;
         }
 
-        .contact-badge:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
+        .header-link:hover {
+            color: var(--foreground);
         }
 
         /* Hero Section */
+        main {
+            padding: 2rem 0;
+        }
+
         .hero {
             text-align: center;
             margin-bottom: 3rem;
         }
 
-        .hero h2 {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero p {
-            font-size: 1.125rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Info Banner */
-        .info-banner {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            box-shadow: var(--shadow);
-        }
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .info-item {
-            display: flex;
+        .hero-badge {
+            display: inline-flex;
             align-items: center;
-            gap: 0.75rem;
-        }
-
-        .info-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.25rem;
-            flex-shrink: 0;
-        }
-
-        .info-text h3 {
+            gap: 0.5rem;
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
             font-size: 0.875rem;
-            font-weight: 600;
-            color: var(--text-primary);
+            font-weight: 500;
+            margin-bottom: 1rem;
         }
 
-        .info-text p {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
+        .hero h2 {
+            font-size: clamp(2rem, 5vw, 3.75rem);
+            font-weight: 700;
+            color: var(--foreground);
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            color: var(--foreground-muted);
+            max-width: 42rem;
+            margin: 0 auto 0.5rem;
+            line-height: 1.6;
+        }
+
+        .hero-subtitle {
+            font-size: 0.875rem;
+            color: var(--foreground-subtle);
+        }
+
+        .hero-subtitle a {
+            color: var(--primary);
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .hero-subtitle a:hover {
+            text-decoration: underline;
         }
 
         /* Services Grid */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
             gap: 1.5rem;
             margin-bottom: 2rem;
         }
@@ -188,65 +173,63 @@
         /* Service Card */
         .service-card {
             background: var(--card-bg);
-            border-radius: 16px;
+            border: 2px solid var(--border);
+            border-radius: 0.75rem;
             padding: 1.5rem;
-            box-shadow: var(--shadow);
-            border: 2px solid transparent;
-            transition: all 0.3s;
+            transition: all 0.2s;
             cursor: pointer;
             position: relative;
-            overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
         .service-card:hover {
-            transform: translateY(-4px);
+            border-color: var(--border-hover);
             box-shadow: var(--shadow-lg);
-            border-color: var(--primary);
         }
 
         .service-card.selected {
             border-color: var(--primary);
-            background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%);
-        }
-
-        .service-card.selected::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            background: rgba(16, 185, 129, 0.02);
+            box-shadow: var(--shadow);
         }
 
         .popular-badge {
             position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            top: -0.75rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
             color: white;
             padding: 0.25rem 0.75rem;
             border-radius: 9999px;
             font-size: 0.75rem;
             font-weight: 600;
+            box-shadow: var(--shadow);
         }
 
         .card-header {
             display: flex;
             align-items: flex-start;
-            gap: 1rem;
+            justify-content: space-between;
             margin-bottom: 1rem;
         }
 
+        .card-icon-text {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex: 1;
+        }
+
         .card-icon {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            border-radius: 12px;
+            width: 3rem;
+            height: 3rem;
+            background: var(--surface);
+            border-radius: 0.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
             font-size: 1.5rem;
             flex-shrink: 0;
         }
@@ -254,96 +237,182 @@
         .card-title h3 {
             font-size: 1.25rem;
             font-weight: 700;
+            color: var(--foreground);
             margin-bottom: 0.25rem;
-            color: var(--text-primary);
+            line-height: 1.2;
         }
 
-        .card-title p {
-            font-size: 0.875rem;
-            color: var(--text-secondary);
+        .card-checkbox {
+            width: 1.5rem;
+            height: 1.5rem;
+            border: 2px solid var(--border);
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.2s;
+        }
+
+        .service-card:hover .card-checkbox {
+            border-color: rgba(16, 185, 129, 0.5);
+        }
+
+        .service-card.selected .card-checkbox {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .card-checkbox svg {
+            width: 1rem;
+            height: 1rem;
+            color: white;
+            display: none;
+        }
+
+        .service-card.selected .card-checkbox svg {
+            display: block;
         }
 
         .card-description {
-            color: var(--text-secondary);
+            font-size: 0.875rem;
+            color: var(--foreground-muted);
             margin-bottom: 1rem;
-            line-height: 1.6;
+            line-height: 1.5;
         }
 
         .card-features {
             list-style: none;
-            margin-bottom: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
         }
 
         .card-features li {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 0.5rem;
-            padding: 0.5rem 0;
-            color: var(--text-secondary);
             font-size: 0.875rem;
+            color: var(--foreground-subtle);
+            line-height: 1.4;
         }
 
-        .card-features li::before {
-            content: '✓';
+        .card-features li svg {
+            width: 1rem;
+            height: 1rem;
             color: var(--success);
-            font-weight: bold;
-            font-size: 1rem;
+            flex-shrink: 0;
+            margin-top: 0.125rem;
         }
 
-        .checkbox-container {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 1rem;
-            background: var(--background);
-            border-radius: 12px;
-            margin-top: 1rem;
+        /* Info Banner */
+        .info-banner {
+            background: linear-gradient(to bottom right, rgba(14, 165, 233, 0.05), rgba(16, 185, 129, 0.05));
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 3rem;
         }
 
-        .checkbox-container input[type="checkbox"] {
-            width: 24px;
-            height: 24px;
-            cursor: pointer;
-            accent-color: var(--primary);
-        }
-
-        .checkbox-container label {
-            font-weight: 600;
-            color: var(--text-primary);
-            cursor: pointer;
-            flex: 1;
-        }
-
-        /* Submit Button */
-        .submit-container {
-            text-align: center;
-            margin-top: 2rem;
-        }
-
-        .submit-btn {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-            border: none;
-            padding: 1rem 3rem;
-            border-radius: 12px;
+        .info-banner h3 {
             font-size: 1.125rem;
             font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: var(--shadow);
+            color: var(--foreground);
+            margin-bottom: 1rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+            gap: 1rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .info-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .info-icon svg {
+            width: 1.25rem;
+            height: 1.25rem;
+            color: var(--primary);
+        }
+
+        .info-text p:first-child {
+            font-weight: 500;
+            color: var(--foreground);
+            margin-bottom: 0.125rem;
+        }
+
+        .info-text p:last-child {
+            font-size: 0.875rem;
+            color: var(--foreground-subtle);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .cta-btn {
             display: inline-flex;
             align-items: center;
             gap: 0.75rem;
-        }
-
-        .submit-btn:hover:not(:disabled) {
-            transform: translateY(-2px);
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
             box-shadow: var(--shadow-lg);
         }
 
-        .submit-btn:disabled {
+        .cta-btn:hover:not(:disabled) {
+            background: var(--primary-hover);
+            box-shadow: var(--shadow-xl);
+            transform: translateY(-1px);
+        }
+
+        .cta-btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
+        }
+
+        .cta-btn svg {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+
+        .cta-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            font-size: 0.875rem;
+            color: var(--foreground-subtle);
+        }
+
+        .cta-info svg {
+            width: 1rem;
+            height: 1rem;
+            color: var(--success);
         }
 
         /* Modal */
@@ -354,12 +423,13 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
             z-index: 1000;
             align-items: center;
             justify-content: center;
             padding: 1rem;
-            animation: fadeIn 0.3s;
+            animation: fadeIn 0.2s;
         }
 
         .modal.active {
@@ -372,18 +442,18 @@
         }
 
         .modal-content {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 2rem;
-            max-width: 500px;
+            background: var(--background);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            max-width: 28rem;
             width: 100%;
-            box-shadow: var(--shadow-lg);
+            box-shadow: var(--shadow-xl);
             animation: slideUp 0.3s;
         }
 
         @keyframes slideUp {
             from {
-                transform: translateY(20px);
+                transform: translateY(1rem);
                 opacity: 0;
             }
             to {
@@ -393,107 +463,158 @@
         }
 
         .modal-header {
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .modal-icon {
-            width: 64px;
-            height: 64px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            border-radius: 50%;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 2rem;
-            margin: 0 auto 1rem;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 1rem;
         }
 
-        .modal-header h3 {
+        .modal-header-text h2 {
             font-size: 1.5rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
+            color: var(--foreground);
+            margin-bottom: 0.25rem;
         }
 
-        .modal-header p {
-            color: var(--text-secondary);
+        .modal-header-text p {
+            font-size: 0.875rem;
+            color: var(--foreground-muted);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--foreground-subtle);
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+            margin: -0.5rem -0.5rem 0 0;
+        }
+
+        .modal-close:hover {
+            background: var(--surface);
+            color: var(--foreground);
+        }
+
+        .modal-close svg {
+            width: 1.25rem;
+            height: 1.25rem;
         }
 
         .modal-body {
-            background: var(--background);
-            border-radius: 12px;
-            padding: 1.5rem;
+            background: var(--surface);
+            border-radius: 0.5rem;
+            padding: 1rem;
             margin-bottom: 1.5rem;
         }
 
-        .modal-body h4 {
+        .modal-body p {
             font-size: 0.875rem;
-            font-weight: 600;
-            color: var(--text-secondary);
+            font-weight: 500;
+            color: var(--foreground-muted);
             margin-bottom: 0.75rem;
         }
 
         .modal-body ul {
             list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
         }
 
         .modal-body li {
             display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 0;
-            color: var(--text-primary);
-            font-weight: 500;
+            align-items: flex-start;
+            gap: 0.75rem;
         }
 
-        .modal-body li::before {
-            content: '✓';
-            color: var(--success);
-            font-weight: bold;
+        .modal-body li span:first-child {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.5rem;
+            height: 1.5rem;
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--primary);
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .modal-body li div p:first-child {
+            font-weight: 500;
+            color: var(--foreground);
+            margin-bottom: 0.125rem;
+        }
+
+        .modal-body li div p:last-child {
+            font-size: 0.875rem;
+            color: var(--foreground-subtle);
+        }
+
+        .modal-info {
+            background: rgba(14, 165, 233, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-info p {
+            font-size: 0.875rem;
+            color: var(--foreground-muted);
+            line-height: 1.5;
         }
 
         .modal-actions {
             display: flex;
-            gap: 1rem;
+            gap: 0.75rem;
         }
 
         .modal-btn {
             flex: 1;
-            padding: 0.875rem;
+            padding: 0.75rem;
             border: none;
-            border-radius: 12px;
+            border-radius: 0.5rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.2s;
+            font-size: 1rem;
         }
 
         .modal-btn-cancel {
             background: var(--background);
-            color: var(--text-primary);
+            color: var(--foreground);
+            border: 1px solid var(--border);
         }
 
         .modal-btn-cancel:hover {
-            background: var(--border);
+            background: var(--surface);
         }
 
         .modal-btn-confirm {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            background: var(--primary);
             color: white;
         }
 
         .modal-btn-confirm:hover {
-            transform: translateY(-2px);
+            background: var(--primary-hover);
             box-shadow: var(--shadow);
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            .hero h2 {
-                font-size: 1.5rem;
+        @media (max-width: 640px) {
+            .header-link {
+                display: none;
             }
 
-            .hero p {
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .hero-description {
                 font-size: 1rem;
             }
 
@@ -505,13 +626,9 @@
                 grid-template-columns: 1fr;
             }
 
-            .logo-text h1 {
-                font-size: 1rem;
-            }
-
-            .contact-badge {
-                font-size: 0.75rem;
-                padding: 0.375rem 0.75rem;
+            .cta-btn {
+                width: 100%;
+                justify-content: center;
             }
         }
     </style>
@@ -522,199 +639,343 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <div class="logo-icon">TUM</div>
+                    <img src="https://i.ibb.co/fYNYd9p/ICONO-WEB.png" alt="TeEchoUnaMano Logo" class="logo-img">
                     <div class="logo-text">
                         <h1>TeEchoUnaMano</h1>
                         <p>Servicios de Limpieza Profesional</p>
                     </div>
                 </div>
-                <a href="https://wa.me/50769696969" class="contact-badge">
-                    <span>📞</span>
-                    <span>Contactar</span>
+                <a href="https://te-echounamano.blogspot.com" target="_blank" rel="noopener noreferrer" class="header-link">
+                    Más información
                 </a>
             </div>
         </div>
     </header>
 
-    <div class="container">
-        <!-- Hero Section -->
-        <section class="hero">
-            <h2>Selecciona el Servicio que Necesitas</h2>
-            <p>Ofrecemos soluciones de limpieza profesional adaptadas a tus necesidades específicas</p>
-        </section>
+    <main>
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-badge">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                    </svg>
+                    <span>Servicio Profesional de Limpieza</span>
+                </div>
 
-        <!-- Info Banner -->
-        <div class="info-banner">
-            <div class="info-grid">
-                <div class="info-item">
-                    <div class="info-icon">✓</div>
-                    <div class="info-text">
-                        <h3>Personal Capacitado</h3>
-                        <p>Equipo profesional certificado</p>
+                <h2>Selecciona tu Servicio de Limpieza</h2>
+
+                <p class="hero-description">
+                    Elige el servicio que mejor se adapte a tus necesidades. Nuestro equipo profesional está listo para transformar tu hogar.
+                </p>
+
+                <p class="hero-subtitle">
+                    Presupuesto personalizado sin compromiso • 
+                    <a href="https://te-echounamano.blogspot.com" target="_blank" rel="noopener noreferrer">TeEchoUnaMano (TUM)</a>
+                </p>
+            </section>
+
+            <!-- Services Grid -->
+            <div class="services-grid">
+                <!-- Limpieza de Mantenimiento -->
+                <div class="service-card" data-service="mantenimiento">
+                    <span class="popular-badge">Más Popular</span>
+                    <div class="card-header">
+                        <div class="card-icon-text">
+                            <div class="card-icon">✨</div>
+                            <div class="card-title">
+                                <h3>Limpieza de Mantenimiento</h3>
+                            </div>
+                        </div>
+                        <div class="card-checkbox">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="card-description">Mantén tu hogar impecable sin esfuerzo</p>
+                    <ul class="card-features">
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            <span>Frecuencia flexible: diaria, semanal o quincenal</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            <span>Equipo profesional de dos especialistas</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            <span>Productos ecológicos de alta calidad incluidos</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            <span>Herramientas profesionales especializadas</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Limpieza a Fondo -->
+                <div class="service-card" data-service="fondo">
+                    <div class="card-header">
+                        <div class="card-icon-text">
+                            <div class="card-icon">🏠</div>
+                            <div class="card-title">
+                                <h3>Limpieza a Fondo</h3>
+                            </div>
+                        </div>
+                        <div class="card-checkbox">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="card-description">Recupera el brillo original de tu hogar</p>
+                    <ul class="card-features">
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            <span>Atención especial a cocina y baños</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            <span>Eliminación de suciedad acumulada</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            <span>Limpieza intensiva de cada rincón</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            <span>Desinfección profunda garantizada</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Limpieza de Rescate -->
+                <div class="service-card" data-service="rescate">
+                    <div class="card-header">
+                        <div class="card-icon-text">
+                            <div class="card-icon">🚀</div>
+                            <div class="card-title">
+                                <h3>Limpieza de Rescate</h3>
+                            </div>
+                        </div>
+                        <div class="card-checkbox">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="card-description">Transformamos espacios descuidados</p>
+                    <ul class="card-features">
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            <span>Ideal para propiedades de alquiler</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            <span>Saneamiento completo y profundo</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            <span>Recuperación de espacios extremos</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            <span>Resultados visibles inmediatos</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Limpieza por Tarea -->
+                <div class="service-card" data-service="tarea">
+                    <div class="card-header">
+                        <div class="card-icon-text">
+                            <div class="card-icon">🎯</div>
+                            <div class="card-title">
+                                <h3>Limpieza por Tarea</h3>
+                            </div>
+                        </div>
+                        <div class="card-checkbox">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="card-description">Soluciones específicas a tu medida</p>
+                    <ul class="card-features">
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            <span>Enfoque en áreas específicas</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            <span>Cocina, baño o electrodomésticos</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            <span>Solución rápida y eficiente</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            <span>Precio ajustado a tus necesidades</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Limpieza de Cristales -->
+                <div class="service-card" data-service="cristales">
+                    <div class="card-header">
+                        <div class="card-icon-text">
+                            <div class="card-icon">💎</div>
+                            <div class="card-title">
+                                <h3>Limpieza de Cristales</h3>
+                            </div>
+                        </div>
+                        <div class="card-checkbox">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="card-description">Vistas cristalinas, hogar luminoso</p>
+                    <ul class="card-features">
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            <span>Ventanas, persianas y mosquiteras</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            <span>Limpieza de rieles y marcos</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            <span>Acabado profesional sin marcas</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            <span>Mayor luminosidad garantizada</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Info Banner -->
+            <div class="info-banner">
+                <h3>Todos nuestros servicios incluyen:</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                        </div>
+                        <div class="info-text">
+                            <p>Equipo Profesional</p>
+                            <p>Dos especialistas capacitados y certificados</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                            </svg>
+                        </div>
+                        <div class="info-text">
+                            <p>Materiales Premium</p>
+                            <p>Productos ecológicos y herramientas profesionales</p>
+                        </div>
                     </div>
                 </div>
-                <div class="info-item">
-                    <div class="info-icon">🛡️</div>
-                    <div class="info-text">
-                        <h3>Garantía de Calidad</h3>
-                        <p>100% satisfacción garantizada</p>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <div class="info-icon">⚡</div>
-                    <div class="info-text">
-                        <h3>Respuesta Rápida</h3>
-                        <p>Atención en 24 horas</p>
-                    </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="cta-section">
+                <button class="cta-btn" id="submitBtn" disabled>
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                    </svg>
+                    <span>Solicitar Presupuesto por WhatsApp</span>
+                </button>
+
+                <div class="cta-info">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                        <polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                    <span>Respuesta en menos de 24 horas</span>
                 </div>
             </div>
         </div>
-
-        <!-- Services Grid -->
-        <div class="services-grid">
-            <!-- Limpieza de Mantenimiento -->
-            <div class="service-card" data-service="mantenimiento">
-                <span class="popular-badge">Más Popular</span>
-                <div class="card-header">
-                    <div class="card-icon">🏠</div>
-                    <div class="card-title">
-                        <h3>Limpieza de Mantenimiento</h3>
-                        <p>Ideal para el día a día</p>
-                    </div>
-                </div>
-                <p class="card-description">
-                    Servicio regular para mantener tu espacio impecable. Perfecto para hogares y oficinas que necesitan limpieza constante.
-                </p>
-                <ul class="card-features">
-                    <li>Limpieza de superficies y pisos</li>
-                    <li>Desinfección de áreas comunes</li>
-                    <li>Organización básica</li>
-                    <li>Vaciado de basureros</li>
-                </ul>
-                <div class="checkbox-container">
-                    <input type="checkbox" id="mantenimiento" name="service" value="Limpieza de Mantenimiento">
-                    <label for="mantenimiento">Seleccionar este servicio</label>
-                </div>
-            </div>
-
-            <!-- Limpieza a Fondo -->
-            <div class="service-card" data-service="fondo">
-                <div class="card-header">
-                    <div class="card-icon">✨</div>
-                    <div class="card-title">
-                        <h3>Limpieza a Fondo</h3>
-                        <p>Limpieza profunda completa</p>
-                    </div>
-                </div>
-                <p class="card-description">
-                    Limpieza exhaustiva de cada rincón. Ideal para mudanzas, eventos especiales o limpieza trimestral.
-                </p>
-                <ul class="card-features">
-                    <li>Limpieza detallada de todas las áreas</li>
-                    <li>Desinfección profunda</li>
-                    <li>Limpieza de electrodomésticos</li>
-                    <li>Áreas de difícil acceso</li>
-                </ul>
-                <div class="checkbox-container">
-                    <input type="checkbox" id="fondo" name="service" value="Limpieza a Fondo">
-                    <label for="fondo">Seleccionar este servicio</label>
-                </div>
-            </div>
-
-            <!-- Limpieza de Rescate -->
-            <div class="service-card" data-service="rescate">
-                <div class="card-header">
-                    <div class="card-icon">🚨</div>
-                    <div class="card-title">
-                        <h3>Limpieza de Rescate</h3>
-                        <p>Para espacios descuidados</p>
-                    </div>
-                </div>
-                <p class="card-description">
-                    Recuperación de espacios en estado crítico. Transformamos áreas muy descuidadas en espacios habitables.
-                </p>
-                <ul class="card-features">
-                    <li>Evaluación inicial del espacio</li>
-                    <li>Remoción de desechos acumulados</li>
-                    <li>Desinfección intensiva</li>
-                    <li>Restauración completa</li>
-                </ul>
-                <div class="checkbox-container">
-                    <input type="checkbox" id="rescate" name="service" value="Limpieza de Rescate">
-                    <label for="rescate">Seleccionar este servicio</label>
-                </div>
-            </div>
-
-            <!-- Limpieza por Tarea -->
-            <div class="service-card" data-service="tarea">
-                <div class="card-header">
-                    <div class="card-icon">📋</div>
-                    <div class="card-title">
-                        <h3>Limpieza por Tarea</h3>
-                        <p>Servicios específicos</p>
-                    </div>
-                </div>
-                <p class="card-description">
-                    Servicios personalizados según tus necesidades específicas. Tú decides qué áreas o tareas necesitas.
-                </p>
-                <ul class="card-features">
-                    <li>Limpieza de áreas específicas</li>
-                    <li>Tareas personalizadas</li>
-                    <li>Flexibilidad total</li>
-                    <li>Presupuesto ajustado</li>
-                </ul>
-                <div class="checkbox-container">
-                    <input type="checkbox" id="tarea" name="service" value="Limpieza por Tarea">
-                    <label for="tarea">Seleccionar este servicio</label>
-                </div>
-            </div>
-
-            <!-- Limpieza de Cristales -->
-            <div class="service-card" data-service="cristales">
-                <div class="card-header">
-                    <div class="card-icon">🪟</div>
-                    <div class="card-title">
-                        <h3>Limpieza de Cristales</h3>
-                        <p>Ventanas impecables</p>
-                    </div>
-                </div>
-                <p class="card-description">
-                    Servicio especializado en limpieza de ventanas, espejos y superficies de vidrio. Resultados sin rayas.
-                </p>
-                <ul class="card-features">
-                    <li>Limpieza interior y exterior</li>
-                    <li>Productos especializados</li>
-                    <li>Sin rayas ni marcas</li>
-                    <li>Marcos y rieles incluidos</li>
-                </ul>
-                <div class="checkbox-container">
-                    <input type="checkbox" id="cristales" name="service" value="Limpieza de Cristales">
-                    <label for="cristales">Seleccionar este servicio</label>
-                </div>
-            </div>
-        </div>
-
-        <!-- Submit Button -->
-        <div class="submit-container">
-            <button class="submit-btn" id="submitBtn" disabled>
-                <span>📱</span>
-                <span>Solicitar Presupuesto por WhatsApp</span>
-            </button>
-        </div>
-    </div>
+    </main>
 
     <!-- Modal -->
     <div class="modal" id="confirmModal">
         <div class="modal-content">
             <div class="modal-header">
-                <div class="modal-icon">✓</div>
-                <h3>Confirmar Solicitud</h3>
-                <p>Estás a punto de solicitar los siguientes servicios:</p>
+                <div class="modal-header-text">
+                    <h2>Confirmar Solicitud</h2>
+                    <p>Revisa los servicios seleccionados</p>
+                </div>
+                <button class="modal-close" id="closeModal">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
             </div>
-            <div class="modal-body">
-                <h4>Servicios seleccionados:</h4>
+
+            <div class="modal-body" id="modalServices">
+                <p>Servicios seleccionados:</p>
                 <ul id="selectedServicesList"></ul>
             </div>
+
+            <div class="modal-info">
+                <p>Al confirmar, se abrirá WhatsApp con tu solicitud pre-escrita. Nuestro equipo te responderá con un presupuesto personalizado en menos de 24 horas.</p>
+            </div>
+
             <div class="modal-actions">
                 <button class="modal-btn modal-btn-cancel" id="cancelBtn">Cancelar</button>
                 <button class="modal-btn modal-btn-confirm" id="confirmBtn">Enviar a WhatsApp</button>
@@ -723,96 +984,106 @@
     </div>
 
     <script>
-        // Estado de la aplicación
+        const services = [
+            { id: 'mantenimiento', title: 'Limpieza de Mantenimiento', description: 'Mantén tu hogar impecable sin esfuerzo' },
+            { id: 'fondo', title: 'Limpieza a Fondo', description: 'Recupera el brillo original de tu hogar' },
+            { id: 'rescate', title: 'Limpieza de Rescate', description: 'Transformamos espacios descuidados' },
+            { id: 'tarea', title: 'Limpieza por Tarea', description: 'Soluciones específicas a tu medida' },
+            { id: 'cristales', title: 'Limpieza de Cristales', description: 'Vistas cristalinas, hogar luminoso' }
+        ];
+
         const state = {
-            selectedServices: new Set()
+            selectedServices: new Set(['mantenimiento'])
         };
 
-        // Elementos del DOM
         const serviceCards = document.querySelectorAll('.service-card');
-        const checkboxes = document.querySelectorAll('input[name="service"]');
         const submitBtn = document.getElementById('submitBtn');
         const modal = document.getElementById('confirmModal');
+        const closeModal = document.getElementById('closeModal');
         const cancelBtn = document.getElementById('cancelBtn');
         const confirmBtn = document.getElementById('confirmBtn');
         const selectedServicesList = document.getElementById('selectedServicesList');
 
-        // Función para actualizar el estado de selección
-        function updateSelection() {
-            state.selectedServices.clear();
-            
-            checkboxes.forEach(checkbox => {
-                if (checkbox.checked) {
-                    state.selectedServices.add(checkbox.value);
-                    checkbox.closest('.service-card').classList.add('selected');
+        function updateUI() {
+            serviceCards.forEach(card => {
+                const serviceId = card.dataset.service;
+                if (state.selectedServices.has(serviceId)) {
+                    card.classList.add('selected');
                 } else {
-                    checkbox.closest('.service-card').classList.remove('selected');
+                    card.classList.remove('selected');
                 }
             });
 
-            // Habilitar/deshabilitar botón de envío
             submitBtn.disabled = state.selectedServices.size === 0;
         }
 
-        // Event listeners para checkboxes
-        checkboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', updateSelection);
-        });
-
-        // Event listeners para cards (hacer clic en la card selecciona el checkbox)
         serviceCards.forEach(card => {
-            card.addEventListener('click', (e) => {
-                // No hacer nada si se hizo clic en el checkbox o su label
-                if (e.target.type === 'checkbox' || e.target.tagName === 'LABEL') {
-                    return;
+            card.addEventListener('click', () => {
+                const serviceId = card.dataset.service;
+                
+                if (state.selectedServices.has(serviceId)) {
+                    state.selectedServices.delete(serviceId);
+                } else {
+                    state.selectedServices.add(serviceId);
                 }
                 
-                const checkbox = card.querySelector('input[type="checkbox"]');
-                checkbox.checked = !checkbox.checked;
-                updateSelection();
+                updateUI();
             });
         });
 
-        // Mostrar modal al hacer clic en el botón de envío
         submitBtn.addEventListener('click', () => {
-            // Actualizar lista de servicios en el modal
             selectedServicesList.innerHTML = '';
-            state.selectedServices.forEach(service => {
-                const li = document.createElement('li');
-                li.textContent = service;
-                selectedServicesList.appendChild(li);
+            
+            let index = 1;
+            state.selectedServices.forEach(serviceId => {
+                const service = services.find(s => s.id === serviceId);
+                if (service) {
+                    const li = document.createElement('li');
+                    li.innerHTML = `
+                        <span>${index}</span>
+                        <div>
+                            <p>${service.title}</p>
+                            <p>${service.description}</p>
+                        </div>
+                    `;
+                    selectedServicesList.appendChild(li);
+                    index++;
+                }
             });
 
             modal.classList.add('active');
         });
 
-        // Cerrar modal
+        closeModal.addEventListener('click', () => {
+            modal.classList.remove('active');
+        });
+
         cancelBtn.addEventListener('click', () => {
             modal.classList.remove('active');
         });
 
-        // Cerrar modal al hacer clic fuera
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
                 modal.classList.remove('active');
             }
         });
 
-        // Confirmar y enviar a WhatsApp
         confirmBtn.addEventListener('click', () => {
-            const phoneNumber = '50769696969';
-            const services = Array.from(state.selectedServices).join('\n• ');
-            
-            const message = `¡Hola! Me gustaría solicitar un presupuesto para los siguientes servicios de limpieza:\n\n• ${services}\n\nPor favor, envíenme más información sobre disponibilidad y precios.\n\n¡Gracias!`;
-            
-            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-            
-            window.open(whatsappUrl, '_blank');
+            const phoneNumber = '34602846694';
+            const selectedServiceNames = Array.from(state.selectedServices).map(id => {
+                const service = services.find(s => s.id === id);
+                return service ? service.title : '';
+            }).filter(Boolean);
+
+            const message = selectedServiceNames.length > 0
+                ? `Hola, me gustaría solicitar los siguientes servicios de limpieza con TeEchoUnaMano (TUM):\n\n${selectedServiceNames.map((name, index) => `${index + 1}. ${name}`).join('\n')}\n\nMe gustaría coordinar una visita para recibir un presupuesto personalizado. ¡Gracias!`
+                : 'Hola, me gustaría solicitar información sobre los servicios de limpieza de TeEchoUnaMano (TUM). Me gustaría coordinar una visita para recibir un presupuesto personalizado.';
+
+            window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
             modal.classList.remove('active');
         });
 
-        // Inicializar
-        updateSelection();
+        updateUI();
     </script>
 </body>
 </html>
