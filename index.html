@@ -6,6 +6,9 @@
     <title>TeEchoUnaMano (TUM) - Servicios de Limpieza Profesional</title>
     <meta name="description" content="Servicios de limpieza profesional. Mantenimiento, limpieza profunda, rescate y más. Solicita tu presupuesto por WhatsApp.">
     <link rel="icon" type="image/png" href="https://i.ibb.co/HTyGwGhP/TUMSIN-FONDO-1024-X1024.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -15,10 +18,10 @@
 
         :root {
             /* Colores actualizados para coincidir exactamente con el diseño Next.js */
-            --primary: #10b981;
-            --primary-hover: #059669;
-            --accent: #0ea5e9;
-            --accent-hover: #0284c7;
+            --primary: #3ec2f2;
+            --primary-hover: #0067b0;
+            --accent: #0067b0;
+            --accent-hover: #005a9c;
             
             --background: #ffffff;
             --surface: #f8fafc;
@@ -39,7 +42,7 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: var(--surface);
             color: var(--foreground);
             line-height: 1.6;
@@ -54,9 +57,10 @@
 
         /* Header */
         header {
-            background: var(--background);
-            border-bottom: 1px solid var(--border);
+            background: linear-gradient(to right, #3ec2f2, #0067b0);
             padding: 1rem 0;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 2rem;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -77,34 +81,81 @@
         }
 
         .logo-img {
-            width: 40px;
-            height: 40px;
+            width: 60px;
+            height: 60px;
             border-radius: 0.5rem;
+            background: white;
+            padding: 0.25rem;
+            box-shadow: var(--shadow);
             object-fit: cover;
         }
 
         .logo-text h1 {
-            font-size: 1.125rem;
+            font-size: 1.5rem;
             font-weight: 700;
-            color: var(--foreground);
+            color: white;
             line-height: 1.2;
         }
 
         .logo-text p {
-            font-size: 0.75rem;
-            color: var(--foreground-subtle);
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.9);
         }
 
         .header-link {
-            color: var(--foreground-muted);
+            background: white;
+            color: #0067b0;
+            padding: 0.625rem 1.25rem;
+            border-radius: 0.5rem;
             text-decoration: none;
+            font-weight: 600;
             font-size: 0.875rem;
-            font-weight: 500;
-            transition: color 0.2s;
+            transition: all 0.2s;
+            box-shadow: var(--shadow);
+            white-space: nowrap;
         }
 
         .header-link:hover {
-            color: var(--foreground);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        /* Agregando estilos responsive para el header */
+        @media (max-width: 640px) {
+            .logo-img {
+                width: 50px;
+                height: 50px;
+            }
+
+            .logo-text h1 {
+                font-size: 1.125rem;
+            }
+
+            .logo-text p {
+                font-size: 0.75rem;
+            }
+
+            .header-link {
+                padding: 0.5rem 1rem;
+                font-size: 0.8125rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .header-link {
+                width: 100%;
+            }
         }
 
         /* Hero Section */
@@ -121,7 +172,7 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background: rgba(16, 185, 129, 0.1);
+            background: rgba(62, 194, 242, 0.1);
             color: var(--primary);
             padding: 0.5rem 1rem;
             border-radius: 9999px;
@@ -190,7 +241,7 @@
 
         .service-card.selected {
             border-color: var(--primary);
-            background: rgba(16, 185, 129, 0.02);
+            background: rgba(62, 194, 242, 0.02);
             box-shadow: var(--shadow);
         }
 
@@ -255,7 +306,7 @@
         }
 
         .service-card:hover .card-checkbox {
-            border-color: rgba(16, 185, 129, 0.5);
+            border-color: rgba(62, 194, 242, 0.5);
         }
 
         .service-card.selected .card-checkbox {
@@ -307,7 +358,7 @@
 
         /* Info Banner */
         .info-banner {
-            background: linear-gradient(to bottom right, rgba(14, 165, 233, 0.05), rgba(16, 185, 129, 0.05));
+            background: linear-gradient(135deg, rgba(0, 103, 176, 0.1) 0%, rgba(62, 194, 242, 0.1) 100%);
             border: 1px solid var(--border);
             border-radius: 0.75rem;
             padding: 1.5rem;
@@ -336,7 +387,7 @@
         .info-icon {
             width: 2.5rem;
             height: 2.5rem;
-            background: rgba(16, 185, 129, 0.1);
+            background: rgba(62, 194, 242, 0.1);
             border-radius: 0.5rem;
             display: flex;
             align-items: center;
@@ -535,7 +586,7 @@
             justify-content: center;
             width: 1.5rem;
             height: 1.5rem;
-            background: rgba(16, 185, 129, 0.1);
+            background: rgba(62, 194, 242, 0.1);
             color: var(--primary);
             border-radius: 9999px;
             font-size: 0.75rem;
@@ -555,7 +606,7 @@
         }
 
         .modal-info {
-            background: rgba(14, 165, 233, 0.05);
+            background: rgba(62, 194, 242, 0.05);
             border: 1px solid var(--border);
             border-radius: 0.5rem;
             padding: 1rem;
